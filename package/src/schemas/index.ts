@@ -1,3 +1,3 @@
 export * from './optionsSchema.ts';
-export * from './serverUtilsSchemas.ts';
-export * from './playerUtilsSchemas.ts';
+export * from './serverUtils';
+export * from './playerUtils';

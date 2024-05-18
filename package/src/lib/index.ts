@@ -1,2 +1,2 @@
-export * from "./playerUtils.ts";
-export * from "./serverUtils.ts";
+export * from "./playerUtils";
+export * from "./serverUtils";

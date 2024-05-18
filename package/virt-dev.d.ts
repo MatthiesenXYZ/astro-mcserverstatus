@@ -7,4 +7,10 @@ declare module 'astro-mcserverstatus:helpers' {
     export const getJavaStatus: typeof import('./src/lib/index.ts').getJavaStatus;
     export const getJavaIcon: typeof import('./src/lib/index.ts').getJavaIcon;
     export const getPlayer: typeof import('./src/lib/index.ts').getPlayer;
+    export const getJavaServerPlayers: typeof import('./src/lib/index.ts').getJavaServerPlayers;
+    export const getJavaServerMOTD: typeof import('./src/lib/index.ts').getJavaServerMOTD;
+}
+
+declare module 'astro-mcserverstatus:components' {
+    export const ServerMOTD: typeof import('./src/components/ServerMOTD.astro').default;
 }

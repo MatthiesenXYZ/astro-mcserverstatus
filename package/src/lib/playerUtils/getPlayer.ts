@@ -1,12 +1,5 @@
-import type { PlayerOptions } from "../schemas";
-
-const trimUUID = ( uuid: string ): string => {
-    if (uuid.includes('-')) {
-        const newUUID = uuid.replace(/-/g, '');
-        return newUUID;
-    }
-    return uuid;
-};
+import type { PlayerOptions } from "../../schemas";
+import { trimUUID } from "./trimUUID";
 
 export const getPlayer = ( opts: PlayerOptions ): string => {
     if (opts.type === "face" || opts.type === "head"){

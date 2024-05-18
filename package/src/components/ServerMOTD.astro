@@ -1,0 +1,17 @@
+---
+import { getServerMOTD } from './api/getServerMOTD';
+
+const serverMOTD = getServerMOTD();
+---
+
+<pre set:html={serverMOTD} />
+
+<style>
+	pre {
+		background-color: rgb(20, 20, 20);
+		width: fit-content;
+		height: fit-content;
+		padding: 20px;
+		font-size: 1rem;
+	}
+</style>

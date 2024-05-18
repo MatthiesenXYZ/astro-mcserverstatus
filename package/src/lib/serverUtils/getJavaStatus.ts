@@ -1,5 +1,5 @@
-import superagent from 'superagent';
-import type { getJavaStatusOptions, JavaStatusResponse } from '../schemas';
+import superagent from "superagent";
+import type { JavaStatusResponse, getJavaStatusOptions } from "../../schemas";
 
 export const getJavaStatus = async ( opts: getJavaStatusOptions ): Promise<JavaStatusResponse> => {
     const url = opts.apiUrl?opts.apiUrl:'https://api.mcstatus.io/v2';
@@ -14,9 +14,4 @@ export const getJavaStatus = async ( opts: getJavaStatusOptions ): Promise<JavaS
     }
 
     return result.body as JavaStatusResponse;
-};
-
-export const getJavaIcon = ( host: string, port = 25565 ): string => {
-    const result = `https://api.mcstatus.io/v2/icon/${host}:${port}`;
-    return result as string;
 };

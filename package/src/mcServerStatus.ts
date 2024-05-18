@@ -1,7 +1,8 @@
 import { addDts, addVirtualImports, createResolver, defineIntegration } from "astro-integration-kit";
 import { getJavaStatus } from "./lib";
-import { integrationLogger, makeMOTD, fileFactory } from "./utils";
+import { integrationLogger, makeMOTD } from "./utils";
 import { optionsSchema, type getJavaStatusOptions } from "./schemas";
+import { serverStatusHelpersDTSFile, componentsDTSFile } from "./stubs";
 
 export default defineIntegration({
 	name: "@matthiesenyxz/astro-mcserverstatus",
@@ -52,26 +53,21 @@ export default defineIntegration({
 					const virtualHelperMap = `
 					export * from '${resolve('./lib/index.ts')}';`;
 
+					const virtualComponentMap = `
+					export { default as ServerMOTD } from '${resolve('./components/ServerMOTD.astro')}';`;
+
 					// Add the virtual imports
 					addVirtualImports(params, {
 						name, imports: {
 							'virtual:astro-mcserverstatus/config': `export default ${JSON.stringify(opts)}`,
 							'astro-mcserverstatus:helpers': virtualHelperMap,
+							'astro-mcserverstatus:components': virtualComponentMap,
 						},
 					});
 
-					// Create a fileFactory for the integration's DTS File
-					const serverStatusDTS = fileFactory();
-
-					// Add the virtual imports to the DTS file
-					serverStatusDTS.addLines(`declare module 'astro-mcserverstatus:helpers' {
-						export const getJavaStatus: typeof import('${resolve('./lib/index.ts')}').getJavaStatus;
-						export const getJavaIcon: typeof import('${resolve('./lib/index.ts')}').getJavaIcon;
-						export const getPlayer: typeof import('${resolve('./lib/index.ts')}').getPlayer;
-					}`);
-
 					// Save the DTS file to the user's project
-					addDts(params, { name, content: serverStatusDTS.text() });
+					addDts(params, { name: 'astro-mcserverstatus-helpers', content: serverStatusHelpersDTSFile });
+					addDts(params, { name: 'astro-mcserverstatus-components', content: componentsDTSFile });
 				},
 			},
 		};
