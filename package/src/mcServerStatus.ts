@@ -16,7 +16,7 @@ export default defineIntegration({
 					const { logger } = params;
 					const { serverAddress, serverPort, javaOptions, selfHostedAPI, verbose } = options;
 
-					logger.info("Setting up mcServerStatus integration");
+					integrationLogger(logger, verbose, "info", "Setting up mcServerStatus integration");
 
 					if (!serverAddress) {
 						integrationLogger(logger, verbose, "error", "serverAddress is required to use mcServerStatus integration");
@@ -24,14 +24,14 @@ export default defineIntegration({
 
 					const serverStatus = await getJavaStatus(serverAddress, serverPort, { ...javaOptions }, selfHostedAPI);
 
-					integrationLogger(logger, true, "info", makeMOTD(serverAddress, serverStatus, serverPort))
+					integrationLogger(logger, true, "info", makeMOTD(serverAddress, serverStatus, serverPort));
 
 					const virtualResolver = {
 						JavaStatus: resolve('./lib/index.ts'),
-					}
+					};
 
 					const virtualImportMap = `
-					export * from '${virtualResolver.JavaStatus}';`
+					export * from '${virtualResolver.JavaStatus}';`;
 
 					addVirtualImports(params, {
 						name,
@@ -46,7 +46,7 @@ export default defineIntegration({
 					serverStatusDTS.addLines(`declare module 'astro-mcserverstatus:helpers' {
 						export const getJavaStatus: typeof import('${virtualResolver.JavaStatus}').getJavaStatus;
 						export const getJavaIcon: typeof import('${virtualResolver.JavaStatus}').getJavaIcon;
-					}`)
+					}`);
 				},
 			},
 		};
