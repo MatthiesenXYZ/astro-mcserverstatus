@@ -1,8 +1,7 @@
 import { addDts, addVirtualImports, createResolver, defineIntegration } from "astro-integration-kit";
-import { getJavaStatus, type getJavaStatusOptions } from "./lib";
-import { fileFactory } from "./utils/fileFactory";
-import { integrationLogger, makeMOTD } from "./utils/integrationLogger";
-import { optionsSchema } from "./schemas";
+import { getJavaStatus } from "./lib";
+import { integrationLogger, makeMOTD, fileFactory } from "./utils";
+import { optionsSchema, type getJavaStatusOptions } from "./schemas";
 
 export default defineIntegration({
 	name: "@matthiesenyxz/astro-mcserverstatus",
@@ -68,6 +67,7 @@ export default defineIntegration({
 					serverStatusDTS.addLines(`declare module 'astro-mcserverstatus:helpers' {
 						export const getJavaStatus: typeof import('${resolve('./lib/index.ts')}').getJavaStatus;
 						export const getJavaIcon: typeof import('${resolve('./lib/index.ts')}').getJavaIcon;
+						export const getPlayer: typeof import('${resolve('./lib/index.ts')}').getPlayer;
 					}`);
 
 					// Save the DTS file to the user's project

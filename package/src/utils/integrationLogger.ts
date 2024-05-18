@@ -1,7 +1,7 @@
 import type { AstroIntegrationLogger } from "astro";
 import { AstroError } from "astro/errors";
 import chalk from 'chalk';
-import type { JavaStatusResponse } from "../lib";
+import type { JavaStatusResponse } from "../schemas";
 
 export const integrationLogger = async (
 	logger: AstroIntegrationLogger,

@@ -5,5 +5,6 @@ declare module 'virtual:astro-mcserverstatus/config' {
 
 declare module 'astro-mcserverstatus:helpers' {
     export const getJavaStatus: typeof import('./src/lib/index.ts').getJavaStatus;
-    export const getJavaIcon: typeof import('./src/lib/index.ts').getJavaStatus;
+    export const getJavaIcon: typeof import('./src/lib/index.ts').getJavaIcon;
+    export const getPlayer: typeof import('./src/lib/index.ts').getPlayer;
 }
