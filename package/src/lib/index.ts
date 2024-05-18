@@ -13,7 +13,7 @@ interface StatusResponse {
 	expires_at: number
 }
 
-interface JavaStatusResponse extends StatusResponse {
+export interface JavaStatusResponse extends StatusResponse {
 	version?: {
 		name_raw: string,
 		name_clean: string,

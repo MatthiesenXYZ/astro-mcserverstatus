@@ -8,7 +8,6 @@ export default defineConfig({
 		tailwind(),
 		mcServerStatus({
 			serverAddress: "play.station48.xyz",
-			serverPort: 25565,
 			javaOptions: {
 				query: true,
 			},

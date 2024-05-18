@@ -1,7 +1,7 @@
 import { addVirtualImports, createResolver, defineIntegration } from "astro-integration-kit";
 import { getJavaStatus } from "./lib";
 import { fileFactory } from "./utils/fileFactory";
-import { integrationLogger } from "./utils/integrationLogger";
+import { integrationLogger, makeMOTD } from "./utils/integrationLogger";
 import { optionsSchema } from "./schemas";
 
 export default defineIntegration({
@@ -24,7 +24,7 @@ export default defineIntegration({
 
 					const serverStatus = await getJavaStatus(serverAddress, serverPort, { ...javaOptions }, selfHostedAPI);
 
-					logger.info(`Server status for ${serverAddress}:${serverPort} is ${serverStatus.online ? "online" : "offline"}${serverStatus.online && ` with ${serverStatus.players?.online ?? 0}/${serverStatus.players?.max ?? 0} players`}`)
+					integrationLogger(logger, true, "info", makeMOTD(serverAddress, serverStatus, serverPort))
 
 					const virtualResolver = {
 						JavaStatus: resolve('./lib/index.ts'),
