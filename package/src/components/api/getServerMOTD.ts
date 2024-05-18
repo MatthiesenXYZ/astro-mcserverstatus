@@ -1,8 +1,8 @@
 import { getJavaServerMOTD } from 'astro-mcserverstatus:helpers'
-import config from 'virtual:astro-mcserverstatus/config'
+import type { getJavaStatusOptions } from '../../schemas'
 
 // Get the MOTD of the server
-export const getServerMOTD = async () => {
-    const motd = await getJavaServerMOTD({host: config.serverAddress, port: config.serverPort, options: config.javaOptions, apiUrl: config.selfHostedAPI})
+export const getServerMOTD = async (opts: getJavaStatusOptions) => {
+    const motd = await getJavaServerMOTD(opts)
     return motd?.html ?? 'No MOTD found.'
 }

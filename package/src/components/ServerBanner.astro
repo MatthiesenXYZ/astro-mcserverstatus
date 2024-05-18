@@ -1,5 +1,5 @@
 ---
-import { getServerMOTD } from './api/getServerMOTD';
+import ServerMOTD from './ServerMOTD.astro';
 import config from 'virtual:astro-mcserverstatus/config';
 
 type Props = {
@@ -13,25 +13,14 @@ type Props = {
 
 const { host, port, options, apiUrl } = Astro.props;
 
-const MOTD_Options = {
+const Options = {
     host: host || config.serverAddress,
     port: port || config.serverPort,
     options: options || config.javaOptions,
     apiUrl: apiUrl || config.selfHostedAPI
 }
 
-const motd = await getServerMOTD(MOTD_Options);
 
 ---
 
-<pre set:html={motd} />
-
-<style>
-	pre {
-		background-color: rgb(20, 20, 20);
-		width: fit-content;
-		height: fit-content;
-		padding: 20px;
-		font-size: 1rem;
-	}
-</style>
+<ServerMOTD {...Options}/>
