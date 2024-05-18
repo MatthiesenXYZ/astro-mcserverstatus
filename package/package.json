@@ -1,0 +1,37 @@
+{
+	"name": "@matthiesenyxz/astro-mcserverstatus",
+	"version": "0.0.0",
+	"description": "Minecraft server Status helpers and widgets for your Astro site",
+	"author": {
+		"email": "adam@matthiesen.xyz",
+		"name": "Adam Matthiesen",
+		"url": "https://matthiesen.xyz"
+	},
+	"license": "MIT",
+	"keywords": [
+		"astro-integration",
+		"astro-component",
+		"withastro",
+		"astro",
+		"minecraft"
+	],
+	"homepage": "https://matthiesen.xyz",
+	"publishConfig": {
+		"access": "public"
+	},
+	"sideEffects": false,
+	"exports": {
+		".": {
+			"types": "./src/index.d.ts",
+			"default": "./src/index.ts"
+		}
+	},
+	"files": ["src"],
+	"type": "module",
+	"peerDependencies": {
+		"astro": ">=4.0.0"
+	},
+	"dependencies": {
+		"astro-integration-kit": "^0.13.2"
+	}
+}
