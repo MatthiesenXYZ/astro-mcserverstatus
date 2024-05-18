@@ -1,5 +1,5 @@
-import { addVirtualImports, createResolver, defineIntegration } from "astro-integration-kit";
-import { getJavaStatus } from "./lib";
+import { addDts, addVirtualImports, createResolver, defineIntegration } from "astro-integration-kit";
+import { getJavaStatus, type getJavaStatusOptions } from "./lib";
 import { fileFactory } from "./utils/fileFactory";
 import { integrationLogger, makeMOTD } from "./utils/integrationLogger";
 import { optionsSchema } from "./schemas";
@@ -7,46 +7,71 @@ import { optionsSchema } from "./schemas";
 export default defineIntegration({
 	name: "@matthiesenyxz/astro-mcserverstatus",
 	optionsSchema,
-	setup({ name, options }) {
+	setup({ 
+		name, 
+		options: opts, 
+		options: { 
+			serverAddress,
+			serverPort,
+			javaOptions,
+			selfHostedAPI,
+			verbose 
+		}
+	}) {
+		// Resolve the path to root of the integration
+		const { resolve } = createResolver(import.meta.url);
 		return {
 			hooks: {
 				"astro:config:setup": async (params) => {
 
-					const { resolve } = createResolver(import.meta.url);
+					// Destructure the parameters
 					const { logger } = params;
-					const { serverAddress, serverPort, javaOptions, selfHostedAPI, verbose } = options;
 
+					// Map the options to variables
+					const javaStatusOptions = { 
+						host: serverAddress, 
+						port: serverPort, 
+						options: javaOptions, 
+						apiUrl: selfHostedAPI 
+					} as getJavaStatusOptions;
+
+					// Log the setup of the integration
 					integrationLogger(logger, verbose, "info", "Setting up mcServerStatus integration");
 
+					// Check if the serverAddress is provided
 					if (!serverAddress) {
 						integrationLogger(logger, verbose, "error", "serverAddress is required to use mcServerStatus integration");
 					}
 
-					const serverStatus = await getJavaStatus(serverAddress, serverPort, { ...javaOptions }, selfHostedAPI);
+					// Get the current status of the defined server
+					const serverStatus = await getJavaStatus(javaStatusOptions);
 
+					// Log the server status
 					integrationLogger(logger, true, "info", makeMOTD(serverAddress, serverStatus, serverPort));
 
-					const virtualResolver = {
-						JavaStatus: resolve('./lib/index.ts'),
-					};
+					// Create a virtual helper map
+					const virtualHelperMap = `
+					export * from '${resolve('./lib/index.ts')}';`;
 
-					const virtualImportMap = `
-					export * from '${virtualResolver.JavaStatus}';`;
-
+					// Add the virtual imports
 					addVirtualImports(params, {
-						name,
-						imports: {
-							'virtual:astro-mcserverstatus/config': `export default ${JSON.stringify(options)}`,
-							'astro-mcserverstatus:helpers': virtualImportMap,
+						name, imports: {
+							'virtual:astro-mcserverstatus/config': `export default ${JSON.stringify(opts)}`,
+							'astro-mcserverstatus:helpers': virtualHelperMap,
 						},
 					});
 
+					// Create a fileFactory for the integration's DTS File
 					const serverStatusDTS = fileFactory();
 
+					// Add the virtual imports to the DTS file
 					serverStatusDTS.addLines(`declare module 'astro-mcserverstatus:helpers' {
-						export const getJavaStatus: typeof import('${virtualResolver.JavaStatus}').getJavaStatus;
-						export const getJavaIcon: typeof import('${virtualResolver.JavaStatus}').getJavaIcon;
+						export const getJavaStatus: typeof import('${resolve('./lib/index.ts')}').getJavaStatus;
+						export const getJavaIcon: typeof import('${resolve('./lib/index.ts')}').getJavaIcon;
 					}`);
+
+					// Save the DTS file to the user's project
+					addDts(params, { name, content: serverStatusDTS.text() });
 				},
 			},
 		};

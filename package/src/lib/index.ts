@@ -47,7 +47,26 @@ export interface JavaStatusResponse extends StatusResponse {
 	software?: string
 }
 
-export const getJavaStatus = async (host: string, port = 25565, options?: JavaStatusOptions, apiUrl = "https://api.mcstatus.io/v2"): Promise<JavaStatusResponse> => {
+export type getJavaStatusOptions = {
+    host: string,
+    port: number|undefined,
+    options?: JavaStatusOptions|undefined,
+    apiUrl: string|undefined
+};
+
+export const getJavaStatus = async (opts: getJavaStatusOptions): Promise<JavaStatusResponse> => {
+
+    const { host } = opts;
+    let { port, options, apiUrl } = opts;
+
+    if (!port) {
+        port = 25565;
+    }
+    if (!apiUrl) {
+        apiUrl = "https://api.mcstatus.io/v2";
+    }
+
+
     const result = await superagent.get(`${apiUrl}/status/java/${host}:${port}?query=${options?.query ?? true}`);
 
     if (result.statusCode !== 200) {
