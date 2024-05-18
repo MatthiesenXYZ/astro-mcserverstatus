@@ -6,6 +6,12 @@ import mcServerStatus from "@matthiesenyxz/astro-mcserverstatus";
 export default defineConfig({
 	integrations: [
 		tailwind(),
-		mcServerStatus()
+		mcServerStatus({
+			serverAddress: "play.station48.xyz",
+			serverPort: 25565,
+			javaOptions: {
+				query: true,
+			},
+		})
 	],
 });
