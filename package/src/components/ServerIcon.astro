@@ -11,6 +11,7 @@ const serverDefault = await getImage({src: server_default});
 type Props = {
     serverHost?: string;
     serverPort?: number;
+    size?: number;
     imageSrcOverride?: ImageMetadata;
     loading?: "eager" | "lazy";
 }
@@ -19,6 +20,7 @@ const {
     serverHost = serverAddress, 
     serverPort = servPort, 
     imageSrcOverride, 
+    size = 74,
     loading = "eager" 
 } = Astro.props;
 
@@ -29,13 +31,11 @@ const Icon = imageSrcOverride?.src ||
 );
 ---
 
-<Image class="server-icon" src={Icon} alt="Server Icon" height={64} width={64} loading={loading}/>
+<Image class="server-icon" src={Icon} alt="Server Icon" height={size} width={size} loading={loading}/>
 
 <style>
     .server-icon {
         background-color: rgba(0, 0, 0, 0.651);
-        width: 74px;
-        height: 74px;
         border-radius: 1.25rem;
         box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.572);
         position: relative;

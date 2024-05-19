@@ -26,4 +26,5 @@ declare module 'astro-mcserverstatus:components/api' {
     export type PlayerHeadType = import('./src/components/api/index.ts').PlayerHeadType;
     export type ServerPlayerResponse = import('./src/components/api/index.ts').ServerPlayerResponse;
     export const getServerStatus: typeof import('./src/components/api/index.ts').getServerStatus;
+    export const howLongAgo: typeof import('./src/components/api/index.ts').howLongAgo;
 }

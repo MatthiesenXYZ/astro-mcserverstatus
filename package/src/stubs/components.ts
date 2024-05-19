@@ -11,6 +11,7 @@ componentsDTS.addLines(`declare module 'astro-mcserverstatus:components/api' {
 	export type PlayerHeadType = import('${resolve('../components/api/index.ts')}').PlayerHeadType;
 	export type ServerPlayerResponse = import('${resolve('../components/api/index.ts')}').ServerPlayerResponse;
 	export const getServerStatus: typeof import('${resolve('../components/api/index.ts')}').getServerStatus;
+	export const howLongAgo: typeof import('${resolve('../components/api/index.ts')}').howLongAgo;
 }`);
 
 componentsDTS.addLines(`declare module 'astro-mcserverstatus:components' {
