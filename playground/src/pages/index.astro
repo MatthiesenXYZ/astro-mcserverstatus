@@ -1,12 +1,41 @@
 ---
-import { ServerMOTD } from "astro-mcserverstatus:components"
+import { ServerMOTD, ServerAddress, ServerIcon, ServerBanner } from "astro-mcserverstatus:components"
+import { getServerIcon } from "astro-mcserverstatus:components/api"
+
+const favicon = await getServerIcon()
 ---
 
-<h1> Playground Testing </h1>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Playground Testing</title>
+		<link rel="icon" type="image/x-icon" href={favicon}>
+	</head>
+	<body>
+		<h1> Playground Testing </h1>
 
-<div>
-	<h2>Server MOTD</h2>
+		<div>
+			<h2>Server MOTD without Banner</h2>
+			<div style="width: fit-content; background-color: rgb(97, 97, 97);">
+				<ServerMOTD />
+			</div>
+		</div>
 
-	<ServerMOTD />
+		<div>
+			<h2>Server Address Button without Banner</h2>
+			<div style="width: fit-content; background-color: rgb(97, 97, 97);">
+				<ServerAddress />
+			</div>
+		</div>
 
-</div>
+		<div>
+			<h2>Server Icon without Banner</h2>
+			<ServerIcon />
+		</div>
+
+		<div>
+			<h2>Server Banner</h2>
+			<ServerBanner/>
+		</div>
+</html>

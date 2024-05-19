@@ -54,7 +54,13 @@ export default defineIntegration({
 					export * from '${resolve('./lib/index.ts')}';`;
 
 					const virtualComponentMap = `
-					export { default as ServerMOTD } from '${resolve('./components/ServerMOTD.astro')}';`;
+					export { default as ServerMOTD } from '${resolve('./components/ServerMOTD.astro')}';
+					export { default as ServerBanner } from '${resolve('./components/ServerBanner.astro')}';
+					export { default as ServerAddress } from '${resolve('./components/ServerAddress.astro')}';
+					export { default as ServerIcon } from '${resolve('./components/ServerIcon.astro')}';`;
+
+					const virtualComponentAPIMap = `
+					export * from '${resolve('./components/api/index.ts')}';`;
 
 					// Add the virtual imports
 					addVirtualImports(params, {
@@ -62,6 +68,7 @@ export default defineIntegration({
 							'virtual:astro-mcserverstatus/config': `export default ${JSON.stringify(opts)}`,
 							'astro-mcserverstatus:helpers': virtualHelperMap,
 							'astro-mcserverstatus:components': virtualComponentMap,
+							'astro-mcserverstatus:components/api': virtualComponentAPIMap,
 						},
 					});
 

@@ -1,0 +1,58 @@
+---
+import config from 'virtual:astro-mcserverstatus/config';
+
+const { serverAddress } = config;
+
+type Props = {
+    address?: string;
+}
+
+const { address = serverAddress } = Astro.props;
+
+---
+<button id="server-address" class="tooltip-trigger js-tooltip-trigger" title="Click to copy" data-clipboard-content={address} onclick='copyText()'>
+    {address}
+</button>
+
+<script is:inline>
+    function copyText() {
+ 
+        /* Select text area by id*/
+        var Text = document.getElementById("server-address");
+
+        /* Select the text inside text area. */
+        let address = Text?.getAttribute("data-clipboard-content");
+
+        const use = address;
+        /* Copy selected text into clipboard */
+        navigator.clipboard.writeText(use || "");
+
+    }
+</script>
+<link href="https://fonts.cdnfonts.com/css/minecraft-3" rel="stylesheet">
+
+<style>
+    #server-address {
+        background-color: transparent;
+        color: #fffbda;
+        border: none;
+        font-size: larger;
+        font-weight: 700;
+        font-family: 'Minecraft', sans-serif;
+        text-shadow: 4px 4px 2px rgb(0, 0, 0);
+        cursor: pointer;
+        border-radius: 5px;
+        transition: ease-in-out 0.2s;
+    }
+
+    #server-address:hover {
+        text-shadow: 8px 8px 4px rgb(0, 0, 0);
+        scale: 1.1;
+        color: rgb(255, 255, 255)
+        transition: ease-in-out 0.2s;
+    }
+
+    #server-address:focus {
+        outline: none;
+    }
+</style>

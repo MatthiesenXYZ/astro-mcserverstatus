@@ -1,0 +1,50 @@
+---
+import { getServerIcon } from 'astro-mcserverstatus:components/api';
+import { Image, getImage } from 'astro:assets';
+import server_default from './assets/server_default.webp';
+import config from 'virtual:astro-mcserverstatus/config';
+
+const { serverAddress, serverPort: servPort } = config;
+
+const serverDefault = await getImage({src: server_default});
+
+type Props = {
+    serverHost?: string;
+    serverPort?: number;
+    imageSrcOverride?: ImageMetadata;
+    loading?: "eager" | "lazy";
+}
+
+const { 
+    serverHost = serverAddress, 
+    serverPort = servPort, 
+    imageSrcOverride, 
+    loading = "eager" 
+} = Astro.props;
+
+const Icon = imageSrcOverride?.src || 
+( serverHost ? 
+    await getServerIcon({ host: serverHost, port: serverPort}) : 
+    serverDefault.src 
+);
+---
+
+<Image class="server-icon" src={Icon} alt="Server Icon" height={64} width={64} loading={loading}/>
+
+<style>
+    .server-icon {
+        background-color: rgba(0, 0, 0, 0.651);
+        width: 74px;
+        height: 74px;
+        border-radius: 1.25rem;
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.572);
+        position: relative;
+        transition: ease-in-out 0.2s;
+    }
+
+    .server-icon:hover {
+        box-shadow: 6px 6px 14px rgba(0, 0, 0, 0.606);
+        scale: 1.05;
+        transition: ease-in-out 0.2s;
+    }
+</style>
