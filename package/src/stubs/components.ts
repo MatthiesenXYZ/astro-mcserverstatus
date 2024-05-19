@@ -18,6 +18,7 @@ componentsDTS.addLines(`declare module 'astro-mcserverstatus:components' {
 	export const ServerBanner: typeof import('${resolve('../components/ServerBanner.astro')}').default;
 	export const ServerAddress: typeof import('${resolve('../components/ServerAddress.astro')}').default;
 	export const ServerIcon: typeof import('${resolve('../components/ServerIcon.astro')}').default;
+	export const OnlinePlayerList: typeof import('${resolve('../components/OnlinePlayerList.astro')}').default;
 }`);
 
 export const componentsDTSFile = componentsDTS.text();

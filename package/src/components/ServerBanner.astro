@@ -1,7 +1,7 @@
 ---
 import config from 'virtual:astro-mcserverstatus/config';
 import { ServerMOTD, ServerAddress, ServerIcon } from 'astro-mcserverstatus:components';
-import { getServerIcon, getServerStatus, getServerPlayers, type PlayerHeadType } from 'astro-mcserverstatus:components/api';
+import { getServerStatus, getServerPlayers, type PlayerHeadType } from 'astro-mcserverstatus:components/api';
 import stoneBrick from './assets/stone-brick.png';
 import stone from './assets/stone.png';
 import dirt from './assets/dirt.png';
@@ -61,7 +61,6 @@ const Options = {
     apiUrl: apiUrl || config.selfHostedAPI
 }
 const Players = await getServerPlayers(Options, playerHeadType)
-const Icon = await getServerIcon({ host: Options.host, port: Options.port})
 const Status = await getServerStatus(Options)
 
 const howLongAgo = (date: Date) => {

@@ -16,6 +16,7 @@ declare module 'astro-mcserverstatus:components' {
     export const ServerBanner: typeof import('./src/components/ServerBanner.astro').default;
     export const ServerAddress: typeof import('./src/components/ServerAddress.astro').default;
     export const ServerIcon: typeof import('./src/components/ServerIcon.astro').default;
+    export const OnlinePlayerList: typeof import('./src/components/OnlinePlayerList.astro').default;
 }
 
 declare module 'astro-mcserverstatus:components/api' {

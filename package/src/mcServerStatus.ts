@@ -49,26 +49,21 @@ export default defineIntegration({
 					// Log the server status
 					integrationLogger(logger, true, "info", makeMOTD(serverAddress, serverStatus, serverPort));
 
-					// Create a virtual helper map
-					const virtualHelperMap = `
-					export * from '${resolve('./lib/index.ts')}';`;
-
+					// Create a virtual import map for the components
 					const virtualComponentMap = `
 					export { default as ServerMOTD } from '${resolve('./components/ServerMOTD.astro')}';
 					export { default as ServerBanner } from '${resolve('./components/ServerBanner.astro')}';
 					export { default as ServerAddress } from '${resolve('./components/ServerAddress.astro')}';
-					export { default as ServerIcon } from '${resolve('./components/ServerIcon.astro')}';`;
-
-					const virtualComponentAPIMap = `
-					export * from '${resolve('./components/api/index.ts')}';`;
+					export { default as ServerIcon } from '${resolve('./components/ServerIcon.astro')}';
+					export { default as OnlinePlayerList } from '${resolve('./components/OnlinePlayerList.astro')}';`;
 
 					// Add the virtual imports
 					addVirtualImports(params, {
 						name, imports: {
 							'virtual:astro-mcserverstatus/config': `export default ${JSON.stringify(opts)}`,
-							'astro-mcserverstatus:helpers': virtualHelperMap,
+							'astro-mcserverstatus:helpers': `export * from '${resolve('./lib/index.ts')}';`,
 							'astro-mcserverstatus:components': virtualComponentMap,
-							'astro-mcserverstatus:components/api': virtualComponentAPIMap,
+							'astro-mcserverstatus:components/api': `export * from '${resolve('./components/api/index.ts')}';`,
 						},
 					});
 
