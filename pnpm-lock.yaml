@@ -36,7 +36,7 @@ importers:
 
   playground:
     dependencies:
-      '@matthiesenyxz/astro-mcserverstatus':
+      '@matthiesenxyz/astro-mcserverstatus':
         specifier: workspace:*
         version: link:../package
       astro:

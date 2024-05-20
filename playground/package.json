@@ -13,7 +13,7 @@
 	"dependencies": {
 		"astro": "^4.8.6",
 		"astro-integration-kit": "^0.13.2",
-		"@matthiesenyxz/astro-mcserverstatus": "workspace:*"
+		"@matthiesenxyz/astro-mcserverstatus": "workspace:*"
 	},
 	"devDependencies": {
 		"@types/node": "^20.12.12",

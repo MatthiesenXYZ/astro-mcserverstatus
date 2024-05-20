@@ -5,7 +5,7 @@ import { optionsSchema, type getJavaStatusOptions } from "./schemas";
 import { helpersDTSFile, componentsDTSFile } from "./stubs";
 
 export default defineIntegration({
-	name: "@matthiesenyxz/astro-mcserverstatus",
+	name: "@matthiesenxyz/astro-mcserverstatus",
 	optionsSchema,
 	setup({ 
 		name, 

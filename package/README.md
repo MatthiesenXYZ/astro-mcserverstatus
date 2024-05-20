@@ -13,15 +13,15 @@ Astro components and helper functions to get your minecraft server displayed on 
 Install the integration **automatically** using the Astro CLI:
 
 ```bash
-pnpm astro add @matthiesenyxz/astro-mcserverstatus
+pnpm astro add @matthiesenxyz/astro-mcserverstatus
 ```
 
 ```bash
-npx astro add @matthiesenyxz/astro-mcserverstatus
+npx astro add @matthiesenxyz/astro-mcserverstatus
 ```
 
 ```bash
-yarn astro add @matthiesenyxz/astro-mcserverstatus
+yarn astro add @matthiesenxyz/astro-mcserverstatus
 ```
 
 Or install it **manually**:
@@ -29,21 +29,21 @@ Or install it **manually**:
 1. Install the required dependencies
 
 ```bash
-pnpm add @matthiesenyxz/astro-mcserverstatus
+pnpm add @matthiesenxyz/astro-mcserverstatus
 ```
 
 ```bash
-npm install @matthiesenyxz/astro-mcserverstatus
+npm install @matthiesenxyz/astro-mcserverstatus
 ```
 
 ```bash
-yarn add @matthiesenyxz/astro-mcserverstatus
+yarn add @matthiesenxyz/astro-mcserverstatus
 ```
 
 2. Add the integration to your astro config
 
 ```diff
-+import mcServerStatus from "@matthiesenyxz/astro-mcserverstatus";
++import mcServerStatus from "@matthiesenxyz/astro-mcserverstatus";
 
 export default defineConfig({
   integrations: [

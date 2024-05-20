@@ -1,5 +1,5 @@
 import { defineConfig } from "astro/config";
-import mcServerStatus from "@matthiesenyxz/astro-mcserverstatus";
+import mcServerStatus from "@matthiesenxyz/astro-mcserverstatus";
 
 // https://astro.build/config
 export default defineConfig({
