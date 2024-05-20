@@ -1,5 +1,5 @@
 import { getJavaServerMOTD } from 'astro-mcserverstatus:helpers'
-import type { getJavaStatusOptions } from '../../schemas'
+import type { getJavaStatusOptions } from "astro-mcserverstatus:helpers/schemas"
 import config from 'virtual:astro-mcserverstatus/config'
 
 // Get the MOTD of the server

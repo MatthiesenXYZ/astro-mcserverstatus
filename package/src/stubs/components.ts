@@ -14,12 +14,19 @@ componentsDTS.addLines(`declare module 'astro-mcserverstatus:components/api' {
 	export const howLongAgo: typeof import('${resolve('../components/api/index.ts')}').howLongAgo;
 }`);
 
-componentsDTS.addLines(`declare module 'astro-mcserverstatus:components' {
-	export const ServerMOTD: typeof import('${resolve('../components/ServerMOTD.astro')}').default;
-	export const ServerBanner: typeof import('${resolve('../components/ServerBanner.astro')}').default;
-	export const ServerAddress: typeof import('${resolve('../components/ServerAddress.astro')}').default;
-	export const ServerIcon: typeof import('${resolve('../components/ServerIcon.astro')}').default;
-	export const OnlinePlayerList: typeof import('${resolve('../components/OnlinePlayerList.astro')}').default;
+componentsDTS.addLines(`declare module 'astro-mcserverstatus:components/ssr' {
+	export const ServerMOTD: typeof import('${resolve('../components/ssr/ServerMOTD.astro')}').default;
+	export const ServerBanner: typeof import('${resolve('../components/ssr/ServerBanner.astro')}').default;
+	export const ServerAddress: typeof import('${resolve('../components/ssr/ServerAddress.astro')}').default;
+	export const ServerIcon: typeof import('${resolve('../components/ssr/ServerIcon.astro')}').default;
+	export const OnlinePlayerList: typeof import('${resolve('../components/ssr/OnlinePlayerList.astro')}').default;
+}`);
+
+componentsDTS.addLines(`declare module 'astro-mcserverstatus:components/assets' {
+	export const dirt: typeof import('${resolve('../components/assets/index.ts')}').dirt;
+	export const stone: typeof import('${resolve('../components/assets/index.ts')}').stone;
+	export const stoneBrick: typeof import('${resolve('../components/assets/index.ts')}').stoneBrick;
+	export const planks: typeof import('${resolve('../components/assets/index.ts')}').planks;
 }`);
 
 export const componentsDTSFile = componentsDTS.text();

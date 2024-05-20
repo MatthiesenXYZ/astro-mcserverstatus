@@ -1,5 +1,5 @@
 import { getJavaServerPlayers, getPlayer } from 'astro-mcserverstatus:helpers';
-import type { getJavaStatusOptions } from '../../schemas';
+import type { getJavaStatusOptions } from "astro-mcserverstatus:helpers/schemas";
 import config from 'virtual:astro-mcserverstatus/config';
 
 export type ServerPlayerResponse = {

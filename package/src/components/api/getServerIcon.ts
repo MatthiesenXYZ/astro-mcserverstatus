@@ -1,6 +1,6 @@
 import { getJavaIcon } from "astro-mcserverstatus:helpers";
 import config from 'virtual:astro-mcserverstatus/config';
-import type { getJavaStatusOptions } from "../../schemas";
+import type { getJavaStatusOptions } from "astro-mcserverstatus:helpers/schemas";
 
 // Get the icon of the server
 export const getServerIcon = async (opts?: getJavaStatusOptions) => {

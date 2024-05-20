@@ -1,6 +1,6 @@
 import { getJavaStatus } from "astro-mcserverstatus:helpers";
 import config from 'virtual:astro-mcserverstatus/config';
-import type { getJavaStatusOptions } from "../../schemas";
+import type { getJavaStatusOptions } from "astro-mcserverstatus:helpers/schemas";
 
 
 export const getServerStatus = async (opts?: getJavaStatusOptions) => {

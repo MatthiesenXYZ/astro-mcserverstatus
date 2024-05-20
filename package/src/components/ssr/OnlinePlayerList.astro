@@ -1,13 +1,10 @@
 ---
 import { getServerPlayers, getServerStatus, howLongAgo, type PlayerHeadType } from 'astro-mcserverstatus:components/api';
-import stoneBrick from './assets/stone-brick.png';
-import stone from './assets/stone.png';
-import dirt from './assets/dirt.png';
-import planks from './assets/planks-oak.png';
+import { stoneBrick, stone, dirt, planks } from 'astro-mcserverstatus:components/assets';
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import config from 'virtual:astro-mcserverstatus/config';
-import { ServerIcon } from 'astro-mcserverstatus:components';
+import { ServerIcon } from 'astro-mcserverstatus:components/ssr';
 
 type Props = {
     host?: string;

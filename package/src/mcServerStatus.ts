@@ -2,7 +2,7 @@ import { addDts, addVirtualImports, createResolver, defineIntegration } from "as
 import { getJavaStatus } from "./lib";
 import { integrationLogger, makeMOTD } from "./utils";
 import { optionsSchema, type getJavaStatusOptions } from "./schemas";
-import { serverStatusHelpersDTSFile, componentsDTSFile } from "./stubs";
+import { helpersDTSFile, componentsDTSFile } from "./stubs";
 
 export default defineIntegration({
 	name: "@matthiesenyxz/astro-mcserverstatus",
@@ -49,26 +49,20 @@ export default defineIntegration({
 					// Log the server status
 					integrationLogger(logger, true, "info", makeMOTD(serverAddress, serverStatus, serverPort));
 
-					// Create a virtual import map for the components
-					const virtualComponentMap = `
-					export { default as ServerMOTD } from '${resolve('./components/ServerMOTD.astro')}';
-					export { default as ServerBanner } from '${resolve('./components/ServerBanner.astro')}';
-					export { default as ServerAddress } from '${resolve('./components/ServerAddress.astro')}';
-					export { default as ServerIcon } from '${resolve('./components/ServerIcon.astro')}';
-					export { default as OnlinePlayerList } from '${resolve('./components/OnlinePlayerList.astro')}';`;
-
 					// Add the virtual imports
 					addVirtualImports(params, {
 						name, imports: {
 							'virtual:astro-mcserverstatus/config': `export default ${JSON.stringify(opts)}`,
 							'astro-mcserverstatus:helpers': `export * from '${resolve('./lib/index.ts')}';`,
-							'astro-mcserverstatus:components': virtualComponentMap,
+							'astro-mcserverstatus:helpers/schemas': `export * from '${resolve('./schemas/helpers.ts')}';`,
+							'astro-mcserverstatus:components/ssr': `export * from '${resolve('./components/ssr/index.ts')}';`,
 							'astro-mcserverstatus:components/api': `export * from '${resolve('./components/api/index.ts')}';`,
+							'astro-mcserverstatus:components/assets': `export * from '${resolve('./components/assets/index.ts')}';`,
 						},
 					});
 
 					// Save the DTS file to the user's project
-					addDts(params, { name: 'astro-mcserverstatus-helpers', content: serverStatusHelpersDTSFile });
+					addDts(params, { name: 'astro-mcserverstatus-helpers', content: helpersDTSFile });
 					addDts(params, { name: 'astro-mcserverstatus-components', content: componentsDTSFile });
 				},
 			},
