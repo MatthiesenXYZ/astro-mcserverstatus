@@ -62,8 +62,14 @@ export default defineIntegration({
 					});
 
 					// Save the DTS file to the user's project
-					addDts(params, { name: 'astro-mcserverstatus-helpers', content: helpersDTSFile });
-					addDts(params, { name: 'astro-mcserverstatus-components', content: componentsDTSFile });
+					addDts(params, { 
+						name: 'astro-mcserverstatus-helpers', 
+						content: helpersDTSFile 
+					});
+					addDts(params, { 
+						name: 'astro-mcserverstatus-components', 
+						content: componentsDTSFile 
+					});
 				},
 			},
 		};
