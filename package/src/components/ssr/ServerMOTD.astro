@@ -5,19 +5,21 @@ import config from 'virtual:astro-mcserverstatus/config';
 type Props = {
     host?: string;
     port?: number;
+    serverType?: "java" | "bedrock";
     options?: {
         query: boolean;
     }
     apiUrl?: string;
 };
 
-const { host, port, options, apiUrl } = Astro.props;
+const { host, port, options, apiUrl, serverType } = Astro.props;
 
 const MOTD_Options = {
     host: host || config.serverAddress,
     port: port || config.serverPort,
     options: options || config.javaOptions,
-    apiUrl: apiUrl || config.selfHostedAPI
+    apiUrl: apiUrl || config.selfHostedAPI,
+    serverType: serverType || "java"
 }
 
 const motd = await getServerMOTD(MOTD_Options);

@@ -1,7 +1,7 @@
 import { addDts, addVirtualImports, createResolver, defineIntegration } from "astro-integration-kit";
 import { getJavaStatus } from "./lib";
 import { integrationLogger, makeMOTD } from "./utils";
-import { optionsSchema, type getJavaStatusOptions } from "./schemas";
+import { optionsSchema, type getServerStatusOptions } from "./schemas";
 import { helpersDTSFile, componentsDTSFile } from "./stubs";
 
 export default defineIntegration({
@@ -13,6 +13,7 @@ export default defineIntegration({
 		options: { 
 			serverAddress,
 			serverPort,
+			serverType,
 			javaOptions,
 			selfHostedAPI,
 			verbose 
@@ -32,8 +33,9 @@ export default defineIntegration({
 						host: serverAddress, 
 						port: serverPort, 
 						options: javaOptions, 
+						serverType: serverType,
 						apiUrl: selfHostedAPI 
-					} as getJavaStatusOptions;
+					} as getServerStatusOptions;
 
 					// Log the setup of the integration
 					integrationLogger(logger, verbose, "info", "Setting up mcServerStatus integration");
@@ -43,11 +45,13 @@ export default defineIntegration({
 						integrationLogger(logger, verbose, "error", "serverAddress is required to use mcServerStatus integration");
 					}
 
-					// Get the current status of the defined server
-					const serverStatus = await getJavaStatus(javaStatusOptions);
-
-					// Log the server status
-					integrationLogger(logger, true, "info", makeMOTD(serverAddress, serverStatus, serverPort));
+					if (serverType === "java") {
+						// Get the current status of the defined server
+						const serverStatus = await getJavaStatus(javaStatusOptions);
+	
+						// Log the server status
+						integrationLogger(logger, true, "info", makeMOTD(serverAddress, serverStatus, serverPort));
+					}
 
 					// Add the virtual imports
 					addVirtualImports(params, {

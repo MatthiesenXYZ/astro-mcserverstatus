@@ -5,6 +5,7 @@ import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import config from 'virtual:astro-mcserverstatus/config';
 import { ServerIcon } from 'astro-mcserverstatus:components/ssr';
+import type { JavaServerPlayerResponse } from '../api/getServerPlayers';
 
 type Props = {
     host?: string;
@@ -57,7 +58,7 @@ const Options = {
     options: options || config.javaOptions,
     apiUrl: apiUrl || config.selfHostedAPI
 }
-const Players = await getServerPlayers(Options, playerHeadType)
+const Players = await getServerPlayers(Options, playerHeadType) as JavaServerPlayerResponse;
 const Status = await getServerStatus(Options)
 const LastChecked = howLongAgo(new Date(Status.retrieved_at))
 ---

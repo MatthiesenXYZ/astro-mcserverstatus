@@ -1,7 +1,7 @@
-import type { JavaStatusResponse, getJavaStatusOptions } from "../../schemas";
+import type { JavaStatusResponse, getServerStatusOptions } from "../../../schemas";
 import { getJavaStatus } from "./getJavaStatus";
 
-export const getJavaServerPlayers = async (opts: getJavaStatusOptions): Promise<JavaStatusResponse["players"]> => {
+export const getJavaServerPlayers = async (opts: getServerStatusOptions): Promise<JavaStatusResponse["players"]> => {
     const serverStatus = await getJavaStatus(opts);
 
     if (serverStatus.online) {

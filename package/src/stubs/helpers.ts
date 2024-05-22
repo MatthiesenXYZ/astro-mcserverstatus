@@ -10,13 +10,16 @@ helpersDTS.addLines(`declare module 'astro-mcserverstatus:helpers' {
 	export const getPlayer: typeof import('${resolve('../lib/index.ts')}').getPlayer;
 	export const getJavaServerPlayers: typeof import('${resolve('../lib/index.ts')}').getJavaServerPlayers;
 	export const getJavaServerMOTD: typeof import('${resolve('../lib/index.ts')}').getJavaServerMOTD;
+	export const getBedrockStatus: typeof import('${resolve('../lib/index.ts')}').getBedrockStatus;
+	export const getBedrockServerPlayers: typeof import('${resolve('../lib/index.ts')}').getBedrockServerPlayers;
+	export const getBedrockServerMOTD: typeof import('${resolve('../lib/index.ts')}').getBedrockServerMOTD;
 }`);
 
 helpersDTS.addLines(`declare module 'astro-mcserverstatus:helpers/schemas' {
 	export const getPlayerSchema: typeof import('${resolve('../schemas/playerUtils/helpers.ts')}').getPlayerSchema;
 	export type PlayerOptions = import('${resolve('../schemas/playerUtils/helpers.ts')}').PlayerOptions;
-	export const getJavaStatusOptionsSchema: typeof import('${resolve('../schemas/serverUtils/helpers.ts')}').getJavaStatusOptionsSchema;
-	export type getJavaStatusOptions = import('${resolve('../schemas/serverUtils/helpers.ts')}').getJavaStatusOptions;
+	export const getServerStatusOptionsSchema: typeof import('${resolve('../schemas/serverUtils/helpers.ts')}').getServerStatusOptionsSchema;
+	export type getServerStatusOptions = import('${resolve('../schemas/serverUtils/helpers.ts')}').getServerStatusOptions;
 	export const JavaStatusResponseSchema: typeof import('${resolve('../schemas/serverUtils/helpers.ts')}').JavaStatusResponseSchema;
 	export type JavaStatusResponse = import('${resolve('../schemas/serverUtils/helpers.ts')}').JavaStatusResponse;
 	export const motdSchema: typeof import('${resolve('../schemas/serverUtils/helpers.ts')}').motdSchema;

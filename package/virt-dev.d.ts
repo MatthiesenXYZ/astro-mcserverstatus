@@ -9,13 +9,16 @@ declare module 'astro-mcserverstatus:helpers' {
     export const getPlayer: typeof import('./src/lib/index.ts').getPlayer;
     export const getJavaServerPlayers: typeof import('./src/lib/index.ts').getJavaServerPlayers;
     export const getJavaServerMOTD: typeof import('./src/lib/index.ts').getJavaServerMOTD;
+    export const getBedrockStatus: typeof import('./src/lib/index.ts').getBedrockStatus;
+    export const getBedrockServerPlayers: typeof import('./src/lib/index.ts').getBedrockServerPlayers;
+    export const getBedrockServerMOTD: typeof import('./src/lib/index.ts').getBedrockServerMOTD;
 }
 
 declare module 'astro-mcserverstatus:helpers/schemas' {
     export const getPlayerSchema: typeof import('./src/schemas/playerUtils/index.ts').getPlayerSchema;
     export type PlayerOptions = import('./src/schemas/playerUtils/index.ts').PlayerOptions;
-    export const getJavaStatusOptionsSchema: typeof import('./src/schemas/serverUtils/index.ts').getJavaStatusOptionsSchema;
-    export type getJavaStatusOptions = import('./src/schemas/serverUtils/index.ts').getJavaStatusOptions;
+    export const getServerStatusOptionsSchema: typeof import('./src/schemas/serverUtils/index.ts').getServerStatusOptionsSchema;
+    export type getServerStatusOptions = import('./src/schemas/serverUtils/index.ts').getServerStatusOptions;
     export const JavaStatusResponseSchema: typeof import('./src/schemas/serverUtils/index.ts').JavaStatusResponseSchema;
     export type JavaStatusResponse = import('./src/schemas/serverUtils/index.ts').JavaStatusResponse;
     export const motdSchema: typeof import('./src/schemas/serverUtils/index.ts').motdSchema;

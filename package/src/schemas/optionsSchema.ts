@@ -11,6 +11,10 @@ export const optionsSchema = z.object({
      */
 	serverPort: z.number().optional(),
     /**
+     * The type of server to query
+     */
+    serverType: z.enum(["java", "bedrock"]).optional(),
+    /**
      * Options for the Java server status query
      */
 	javaOptions: z.object({
