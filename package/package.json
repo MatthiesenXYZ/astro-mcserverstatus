@@ -32,7 +32,7 @@
 		"astro": ">=4.8.6"
 	},
 	"dependencies": {
-		"astro-integration-kit": "^0.13.3",
+		"astro-integration-kit": "^0.14.0",
 		"superagent": "^9.0.2",
 		"chalk": "^5.3.0"
 	},
