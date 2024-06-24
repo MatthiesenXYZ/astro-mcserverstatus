@@ -19,10 +19,10 @@ importers:
     dependencies:
       astro:
         specifier: '>=4.8.6'
-        version: 4.8.6(@types/node@20.12.12)(typescript@5.4.5)
+        version: 4.8.6(@types/node@20.14.8)(typescript@5.4.5)
       astro-integration-kit:
         specifier: ^0.13.3
-        version: 0.13.3(astro@4.8.6(@types/node@20.12.12)(typescript@5.4.5))
+        version: 0.13.3(astro@4.8.6(@types/node@20.14.8)(typescript@5.4.5))
       chalk:
         specifier: ^5.3.0
         version: 5.3.0
@@ -41,11 +41,11 @@ importers:
         version: link:../package
       astro:
         specifier: ^4.8.6
-        version: 4.8.6(@types/node@20.12.12)(typescript@5.4.5)
+        version: 4.8.6(@types/node@20.14.8)(typescript@5.4.5)
     devDependencies:
       '@types/node':
-        specifier: ^20.12.12
-        version: 20.12.12
+        specifier: ^20.14.8
+        version: 20.14.8
       typescript:
         specifier: ^5.4.5
         version: 5.4.5
@@ -842,6 +842,9 @@ packages:
 
   '@types/node@20.12.12':
     resolution: {integrity: sha512-eWLDGF/FOSPtAvEqeRAQ4C8LSA7M1I7i0ky1I8U7kD1J5ITyW3AsRhQrKVoWf5pFKZ2kILsEGJhsI9r93PYnOw==}
+
+  '@types/node@20.14.8':
+    resolution: {integrity: sha512-DO+2/jZinXfROG7j7WKFn/3C6nFwxy2lLpgLjEXJz+0XKphZlTLJ14mo8Vfg8X5BWN6XjyESXq+LcYdT7tR3bA==}
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
@@ -3503,6 +3506,10 @@ snapshots:
     dependencies:
       undici-types: 5.26.5
 
+  '@types/node@20.14.8':
+    dependencies:
+      undici-types: 5.26.5
+
   '@types/normalize-package-data@2.4.4': {}
 
   '@types/semver@7.5.8': {}
@@ -3591,13 +3598,13 @@ snapshots:
     dependencies:
       tslib: 2.6.2
 
-  astro-integration-kit@0.13.3(astro@4.8.6(@types/node@20.12.12)(typescript@5.4.5)):
+  astro-integration-kit@0.13.3(astro@4.8.6(@types/node@20.14.8)(typescript@5.4.5)):
     dependencies:
-      astro: 4.8.6(@types/node@20.12.12)(typescript@5.4.5)
+      astro: 4.8.6(@types/node@20.14.8)(typescript@5.4.5)
       pathe: 1.1.2
       recast: 0.23.7
 
-  astro@4.8.6(@types/node@20.12.12)(typescript@5.4.5):
+  astro@4.8.6(@types/node@20.14.8)(typescript@5.4.5):
     dependencies:
       '@astrojs/compiler': 2.8.0
       '@astrojs/internal-helpers': 0.4.0
@@ -3656,8 +3663,8 @@ snapshots:
       tsconfck: 3.0.3(typescript@5.4.5)
       unist-util-visit: 5.0.0
       vfile: 6.0.1
-      vite: 5.2.11(@types/node@20.12.12)
-      vitefu: 0.2.5(vite@5.2.11(@types/node@20.12.12))
+      vite: 5.2.11(@types/node@20.14.8)
+      vitefu: 0.2.5(vite@5.2.11(@types/node@20.14.8))
       which-pm: 2.1.1
       yargs-parser: 21.1.1
       zod: 3.23.8
@@ -5766,18 +5773,18 @@ snapshots:
       unist-util-stringify-position: 4.0.0
       vfile-message: 4.0.2
 
-  vite@5.2.11(@types/node@20.12.12):
+  vite@5.2.11(@types/node@20.14.8):
     dependencies:
       esbuild: 0.20.2
       postcss: 8.4.38
       rollup: 4.14.1
     optionalDependencies:
-      '@types/node': 20.12.12
+      '@types/node': 20.14.8
       fsevents: 2.3.3
 
-  vitefu@0.2.5(vite@5.2.11(@types/node@20.12.12)):
+  vitefu@0.2.5(vite@5.2.11(@types/node@20.14.8)):
     optionalDependencies:
-      vite: 5.2.11(@types/node@20.12.12)
+      vite: 5.2.11(@types/node@20.14.8)
 
   wcwidth@1.0.1:
     dependencies:
